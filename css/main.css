@@ -34,7 +34,7 @@ header {
   display: none;
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
@@ -55,7 +55,7 @@ header {
       align-self: center;
   text-align: center;
   padding: 20px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .popup__close {
@@ -75,6 +75,10 @@ header {
 .popup__assetDesc {
   font-size: 18px;
   margin-bottom: 20px;
+}
+
+.popup__assetImage {
+  max-height: 100%;
 }
 
 .mainContainer {
@@ -202,5 +206,32 @@ header {
 }
 
 /* Media Queries */
+@media only screen and (max-width: 1023px) {
+  .popup {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .imageGrid__image {
+    width: 49%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .imageGrid__image {
+    width: 100%;
+  }
+  .popup__assetTitle {
+    font-size: 17px;
+  }
+  .popup__assetDesc {
+    font-size: 12px;
+  }
+  .searchBox {
+    width: 100%;
+  }
+}
+
 /* Media Queries End */
 /*# sourceMappingURL=main.css.map */
