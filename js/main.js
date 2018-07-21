@@ -23,19 +23,19 @@ $( document ).ready(function() {
 
     $('.imageGrid').on('click', '.imageGrid__image', function() {
         var nasaID = $(this).data("nasaid");
-        var title = $(this).data("title");;
-        var desc = $(this).data("desc");;
-
-        clearPopup();
+        var title = $(this).data("title");
+        var desc = $(this).data("desc");
+        var mediaType = $(this).data("mediatype");
 
         $.get("https://images-api.nasa.gov/asset/" + nasaID).done(function(data) {
-            populatePopup(data, title, desc);
+            populatePopup(data, title, desc, mediaType);
         });
 
     })
 
-    $('.popup__close').on('click', function() {
+    $('.popup').on('click', '.popup__close', function() {
         $('.popupOverlay').css('display', 'none');
+        clearPopup();
     })
     
 });
@@ -116,13 +116,20 @@ function generateGridOutput(data) {
     var imageResultHTML = "";
 
     $(data.collection.items).each(function(index, el){
+        var title = el.data[0].title;
+        var desc = el.data[0].description;
+        if (desc) {
+            desc = desc.substring(0, 1000);
+        }
+        var nasaID = el.data[0].nasa_id;
+        var mediaType = el.data[0].media_type;
 
-        if (el.data[0].media_type == "image") {
-            imageResultHTML += '<div class="imageGrid__image" data-nasaID="' + el.data[0].nasa_id + '" data-title="' + el.data[0].title + '" data-desc="' + el.data[0].description + '"><img src="' + el.links[0].href + '" alt=""><div class="imageGrid__imageOverlay"><i class="fas fa-search-plus"></i></div></div>'
-        } else if (el.data[0].media_type == "audio") {
-            imageResultHTML += '<div class="imageGrid__image" data-nasaID="' + el.data[0].nasa_id + '" data-title="' + el.data[0].title + '" data-desc="' + el.data[0].description + '"><div class="imageGrid__audioBlock">' + el.data[0].title + '<i class="fas fa-play"></i></div></div></div>'
-        } else if (el.data[0].media_type == "video") {
-            imageResultHTML += '<div class="imageGrid__image" data-nasaID="' + el.data[0].nasa_id + '" data-title="' + el.data[0].title + '" data-desc="' + el.data[0].description + '"><div class="imageGrid__videoBlock">' + el.data[0].title + '<i class="fas fa-play"></i></div></div></div>'
+        if (mediaType == "image") {
+            imageResultHTML += '<div class="imageGrid__image" data-nasaID="' + nasaID + '" data-title="' + title + '" data-desc="' + desc + '" data-mediatype="' + mediaType + '"><img src="' + el.links[0].href + '" alt=""><div class="imageGrid__imageOverlay"><i class="fas fa-search-plus"></i></div></div>'
+        } else if (mediaType == "audio") {
+            imageResultHTML += '<div class="imageGrid__image" data-nasaID="' + nasaID + '" data-title="' + title + '" data-desc="' + desc + '" data-mediatype="' + mediaType + '"><div class="imageGrid__audioBlock">' + title + '<i class="fas fa-play"></i></div></div></div>'
+        } else if (mediaType == "video") {
+            imageResultHTML += '<div class="imageGrid__image" data-nasaID="' + nasaID + '" data-title="' + title + '" data-desc="' + desc + '" data-mediatype="' + mediaType + '"><div class="imageGrid__videoBlock">' + title + '<i class="fas fa-play"></i></div></div></div>'
         }
         
     });
@@ -130,21 +137,29 @@ function generateGridOutput(data) {
     $('.imageGrid').html(imageResultHTML);
 }
 
-function populatePopup(assetData, title, desc) {
+function populatePopup(assetData, title, desc, mediaType) {
+    console.log(assetData);
+    var popupHTML = "";
+    var imgSrc = assetData.collection.items[3].href;
 
-    //TODO Output audio and video assets depending on media type
-    var asset = assetData.collection.items[3].href;
-        
-    $('.popup__assetImage').attr("src", asset);
+    var audioSrcmp3 = assetData.collection.items[0].href;
+    var audioSrcm4a = assetData.collection.items[1].href;
 
-    $('.popup__assetTitle').text(title);
-    $('.popup__assetDesc').text(desc);
+    var videoSrc = assetData.collection.items[0].href;
+
+    if (mediaType == "image") {
+        popupHTML = "<div class='popup__close'><i class='far fa-times-circle'></i></div><h2 class='popup__assetTitle'>" + title + "</h2><p class='popup__assetDesc'>" + desc + "</p><img src='" + imgSrc + "' alt='' class='popup__assetImage'>"
+    } else if (mediaType == "audio") {
+        popupHTML = "<div class='popup__close'><i class='far fa-times-circle'></i></div><h2 class='popup__assetTitle'>" + title + "</h2><p class='popup__assetDesc'>" + desc + "</p><audio controls class='popup__assetAudio'><source src='" + audioSrcm4a + "' type='audio/m4a'><source src='" + audioSrcmp3 + "' type='audio/mpeg'>Your browser does not support the audio element.</audio>"
+    } else if (mediaType == "video") {
+        popupHTML = "<div class='popup__close'><i class='far fa-times-circle'></i></div><h2 class='popup__assetTitle'>" + title + "</h2><p class='popup__assetDesc'>" + desc + "</p><video controls class='popup__assetVideo'><source src='" + videoSrc + "' type='video/mp4'>Your browser does not support the video tag.</video>"
+    } 
+
+    $('.popup').html(popupHTML);
 
     $('.popupOverlay').css('display', 'flex');
 }
 
 function clearPopup() {
-    $('.popup__assetTitle').text("");
-    $('.popup__assetDesc').text("");
-    $('.popup__assetImage').attr("src", "");
+    $('.popup').html("");
 }

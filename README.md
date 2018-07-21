@@ -8,9 +8,10 @@ Current functionality:
 - Image Search
 - View larger image with title and description
 - Audio Search
+- Listen to audio clips
 - Video Search
+- Watch video clips
 
 Future functionality:
-- Ability to listen to audio clips
-- Ability to watch video clips
 - Pagination
+- Masonry style grid

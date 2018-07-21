@@ -81,6 +81,10 @@ header {
   max-height: 100%;
 }
 
+.popup__assetVideo {
+  max-width: 100%;
+}
+
 .mainContainer {
   width: 80%;
   margin: 0 auto;
