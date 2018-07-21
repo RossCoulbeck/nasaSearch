@@ -20,6 +20,7 @@
 		<![endif]-->
 
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="js/main.js"></script>
 	</head>
 	<body>
 		<div class="popupOverlay">
@@ -59,83 +60,19 @@
 					<span class="searchBox__fakeCheck" id="audioCheckFake"><i class="fas fa-check"></i></span>
 					<label for="audioCheck" id="audioCheckLabel" class="searchBox__checkLabel">Audio</label>
 				</div>
+
+				<div class="searchBox__checkContainer">
+					<input type="checkbox" class="searchBox__check" id="videoCheck" />
+					<span class="searchBox__fakeCheck" id="videoCheckFake"><i class="fas fa-check"></i></span>
+					<label for="videoCheck" id="videoCheckLabel" class="searchBox__checkLabel">Video</label>
+				</div>
+
+				<p class="searchBox__userNotification">Test</p>
 			</div>
 			
 			<div class="imageGrid"></div>
 			
 		</section>
-
-		<script>
-		$( document ).ready(function() {
-			$('#imageCheckLabel, #imageCheckFake').on('click', function() {
-				$('#imageCheckFake').toggleClass('checked');
-			})
-
-			$('#audioCheckLabel, #audioCheckFake').on('click', function() {
-				$('#audioCheckFake').toggleClass('checked');
-			})
-
-			$('.searchBox__icon').on('click', function() {
-				searchNasa();
-			});
-
-			$('.searchBox__text').on('keyup', function(event) {
-				if (event.keyCode === 13) {
-					searchNasa();
-				}
-			})
-
-			$('.imageGrid').on('click', '.imageGrid__image', function() {
-				var nasaID = $(this).data("nasaid");
-				var title = $(this).data("title");;
-				var desc = $(this).data("desc");;
-
-				retrieveAsset(nasaID, title, desc);
-			})
-
-			$('.popup__close').on('click', function() {
-				$('.popupOverlay').css('display', 'none');
-			})
-			
-		});
-
-		function searchNasa() {
-			var imageResultHTML = "";
-			var searchTerm = $('.searchBox__text').val();
-
-			$.get("https://images-api.nasa.gov/search?q="+ searchTerm + "&media_type=image", function(data, status){
-				//console.log(data);
-
-				$(data.collection.items).each(function(index, el){
-					console.log(el);
-
-					imageResultHTML += '<div class="imageGrid__image" data-nasaID="' + el.data[0].nasa_id + '" data-title="' + el.data[0].title + '" data-desc="' + el.data[0].description + '"><img src="' + el.links[0].href + '" alt=""><div class="imageGrid__imageOverlay"><i class="fas fa-search-plus"></i></div></div>'
-				});
-
-				$('.imageGrid').html(imageResultHTML);
-			});
-		}
-
-		function retrieveAsset(nasaID, title, desc) {
-			clearPopup();
-
-			$.get("https://images-api.nasa.gov/asset/" + nasaID, function(data, status){
-				var asset = data.collection.items[3].href;
-				
-				$('.popup__assetImage').attr("src", asset);
-			});
-
-			$('.popup__assetTitle').text(title);
-			$('.popup__assetDesc').text(desc);
-
-			$('.popupOverlay').css('display', 'flex');
-		}
-
-		function clearPopup() {
-			$('.popup__assetTitle').text("");
-			$('.popup__assetDesc').text("");
-			$('.popup__assetImage').attr("src", "");
-		}
-		</script>
+		
 	</body>
 </html>

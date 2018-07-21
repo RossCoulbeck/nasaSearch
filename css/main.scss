@@ -128,7 +128,7 @@ header {
 }
 
 .searchBox__checkContainer {
-    width: 50%;
+    width: 33%;
     display: flex;
 }
 
@@ -145,6 +145,7 @@ header {
     border-radius: 3px;
     padding: 4px 0 0 4px;
     margin-right: 10px;
+    cursor: pointer;
     
     i {
         display: none;
@@ -153,6 +154,12 @@ header {
     &.checked i {
         display: block;
     }
+}
+
+.searchBox__userNotification {
+    display: none;
+    margin-top: 10px;
+    color: red;
 }
 
 
@@ -175,6 +182,20 @@ header {
 
     &:hover .imageGrid__imageOverlay {
         display: flex;
+    }
+}
+
+.imageGrid__audioBlock,
+.imageGrid__videoBlock {
+    text-align: center;
+    padding: 40px 30px;
+    background-color: #ccc;
+    min-height: 200px;
+
+    i {
+        margin-top: 20px;
+        display: block;
+        font-size: 35px;
     }
 }
 

@@ -127,7 +127,7 @@ header {
 }
 
 .searchBox__checkContainer {
-  width: 50%;
+  width: 33%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -146,6 +146,7 @@ header {
   border-radius: 3px;
   padding: 4px 0 0 4px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .searchBox__fakeCheck i {
@@ -154,6 +155,12 @@ header {
 
 .searchBox__fakeCheck.checked i {
   display: block;
+}
+
+.searchBox__userNotification {
+  display: none;
+  margin-top: 10px;
+  color: red;
 }
 
 .imageGrid {
@@ -182,6 +189,21 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.imageGrid__audioBlock,
+.imageGrid__videoBlock {
+  text-align: center;
+  padding: 40px 30px;
+  background-color: #ccc;
+  min-height: 200px;
+}
+
+.imageGrid__audioBlock i,
+.imageGrid__videoBlock i {
+  margin-top: 20px;
+  display: block;
+  font-size: 35px;
 }
 
 .imageGrid__imageOverlay {

@@ -7,9 +7,10 @@ Current functionality:
 - Responsive
 - Image Search
 - View larger image with title and description
-
-To-Do:
 - Audio Search
-- Ability to listen to audio clips
 - Video Search
+
+Future functionality:
+- Ability to listen to audio clips
 - Ability to watch video clips
+- Pagination
