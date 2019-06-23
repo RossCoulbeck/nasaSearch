@@ -1,72 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Nasa Image Viewer</title>
+    <head>
+        <title>Nasa Image Viewer</title>
 
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/main.css" />
-		<link rel="shortcut icon" href="./favicon.ico">
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="shortcut icon" href="./favicon.ico" />
 
-		<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans" rel="stylesheet" />
 
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous" />
 
-		<!--Allows older browsers to use HTML5 elements-->
-		<!--[if lt IE 9]>
-	    <script src="js/html5shiv.js"></script>
-		<![endif]-->
+        <!--Allows older browsers to use HTML5 elements-->
+        <!--[if lt IE 9]>
+            <script src="js/html5shiv.js"></script>
+        <![endif]-->
 
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-		<script src="js/main.js"></script>
-	</head>
-	<body>
-		<div class="popupOverlay">
-			<div class="popup">
-				
-			</div>
-		</div>
-		<header>
-			<div class="logo">
-				<img src="images/logo.png" alt="nasa logo">
-			</div>
-		</header>
-		<section class="mainContainer">
-			<h1>NASA Search</h1>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="js/main.js"></script>
+    </head>
+    <body>
+        <div class="popupOverlay">
+            <div class="popup"></div>
+        </div>
+        <header>
+            <div class="logo">
+                <img src="images/logo.png" alt="nasa logo" />
+            </div>
+        </header>
+        <section class="mainContainer">
+            <h1>NASA Search</h1>
 
-			<div class="searchBox">
+            <div class="searchBox">
+                <div class="searchBox__searchContainer">
+                    <input type="search" class="searchBox__text" />
+                    <i class="fas fa-search searchBox__icon"></i>
+                </div>
 
-				<div class="searchBox__searchContainer">
-					<input type="search" class="searchBox__text" />
-					<i class="fas fa-search searchBox__icon"></i>
-				</div>
+                <div class="searchBox__checkContainer">
+                    <input type="checkbox" class="searchBox__check" id="imageCheck" />
+                    <span class="searchBox__fakeCheck" id="imageCheckFake"><i class="fas fa-check"></i></span>
+                    <label for="imageCheck" id="imageCheckLabel" class="searchBox__checkLabel">Image</label>
+                </div>
 
-				<div class="searchBox__checkContainer">
-					<input type="checkbox" class="searchBox__check" id="imageCheck" />
-					<span class="searchBox__fakeCheck" id="imageCheckFake"><i class="fas fa-check"></i></span>
-					<label for="imageCheck" id="imageCheckLabel" class="searchBox__checkLabel">Image</label>
-				</div>
-				
-				<div class="searchBox__checkContainer">
-					<input type="checkbox" class="searchBox__check" id="audioCheck" />
-					<span class="searchBox__fakeCheck" id="audioCheckFake"><i class="fas fa-check"></i></span>
-					<label for="audioCheck" id="audioCheckLabel" class="searchBox__checkLabel">Audio</label>
-				</div>
+                <div class="searchBox__checkContainer">
+                    <input type="checkbox" class="searchBox__check" id="audioCheck" />
+                    <span class="searchBox__fakeCheck" id="audioCheckFake"><i class="fas fa-check"></i></span>
+                    <label for="audioCheck" id="audioCheckLabel" class="searchBox__checkLabel">Audio</label>
+                </div>
 
-				<div class="searchBox__checkContainer">
-					<input type="checkbox" class="searchBox__check" id="videoCheck" />
-					<span class="searchBox__fakeCheck" id="videoCheckFake"><i class="fas fa-check"></i></span>
-					<label for="videoCheck" id="videoCheckLabel" class="searchBox__checkLabel">Video</label>
-				</div>
+                <div class="searchBox__checkContainer">
+                    <input type="checkbox" class="searchBox__check" id="videoCheck" />
+                    <span class="searchBox__fakeCheck" id="videoCheckFake"><i class="fas fa-check"></i></span>
+                    <label for="videoCheck" id="videoCheckLabel" class="searchBox__checkLabel">Video</label>
+                </div>
 
-				<p class="searchBox__userNotification">Test</p>
-			</div>
-			
-			<div class="imageGrid"></div>
-			
-		</section>
-		
-	</body>
+                <p class="searchBox__userNotification">Test</p>
+            </div>
+
+            <div class="imageGrid"></div>
+        </section>
+    </body>
 </html>
